@@ -1,0 +1,12 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: deny-all
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: loki
+  action: DENY
+  rules:
+    - {} # This empty rule ensures the DENY action applies to all requests

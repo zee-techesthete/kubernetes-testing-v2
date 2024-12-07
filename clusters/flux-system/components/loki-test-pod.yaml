@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: loki-test-pod
+  namespace: monitoring
+spec:
+  containers:
+    - name: curl
+      image: curlimages/curl:7.79.1 # Using the official curl image
+      command:
+        [
+          "/bin/sh",
+          "-c",
+          "while true; do curl -I http://loki-stack:3100; sleep 5; done",
+        ]
+      resources:
+        requests:
+          memory: "64Mi"
+          cpu: "250m"
